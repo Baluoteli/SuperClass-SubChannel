@@ -197,4 +197,5 @@ public:
 	static void CloseAgoraObject();
 
 	static CAGEngineEventHandler m_EngineEventHandler;
+	static CAGEngineEventHandler m_EngineEventHandlerSub;
 };

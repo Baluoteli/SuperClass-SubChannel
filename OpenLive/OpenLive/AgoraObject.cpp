@@ -8,6 +8,7 @@
 CAgoraObject *CAgoraObject::m_lpAgoraObject = NULL;
 IRtcEngine	*CAgoraObject::m_lpAgoraEngine = NULL;
 CAGEngineEventHandler CAgoraObject::m_EngineEventHandler;
+CAGEngineEventHandler CAgoraObject::m_EngineEventHandlerSub;
 CString   CAgoraObject::m_strAppID;
 
 CAgoraObject::CAgoraObject(void)
@@ -136,6 +137,7 @@ void CAgoraObject::CloseAgoraObject()
 void CAgoraObject::SetMsgHandlerWnd(HWND hWnd)
 {
 	m_EngineEventHandler.SetMsgReceiver(hWnd);
+	m_EngineEventHandlerSub.SetMsgReceiver(hWnd);
 }
 
 HWND CAgoraObject::GetMsgHandlerWnd()
@@ -278,9 +280,9 @@ BOOL CAgoraObject::JoinSubChannel(LPCTSTR lpChannelName,UINT nUID /*= 0*/, LPCST
 	CHAR szChannelName[128];
 
 	::WideCharToMultiByte(CP_ACP, 0, lpChannelName, -1, szChannelName, 128, NULL, NULL);
-	nRet = m_lpAgoraEngine->joinSubChannel(lpDynamicKey, szChannelName, lpStreamInfo, nUID,&m_EngineEventHandler);
+	nRet = m_lpAgoraEngine->joinSubChannel(lpDynamicKey, szChannelName, lpStreamInfo, nUID,&m_EngineEventHandlerSub);
 #else
-	nRet = m_lpAgoraEngine->joinSubChannel(lpDynamicKey, lpChannelName, lpStreamInfo, nUID,&m_EngineEventHandler);
+	nRet = m_lpAgoraEngine->joinSubChannel(lpDynamicKey, lpChannelName, lpStreamInfo, nUID,&m_EngineEventHandlerSub);
 #endif
 
 	if (nRet == 0)
