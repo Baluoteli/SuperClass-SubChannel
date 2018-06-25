@@ -17,8 +17,18 @@ void CAGEngineEventHandler::SetMsgReceiver(HWND hWnd)
 
 void CAGEngineEventHandler::onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed)
 {
-	OutputDebugStringA(__FUNCTION__);
-	OutputDebugStringA("\n");
+	char szbuf[MAX_PATH] = { "\0" };
+	sprintf_s(szbuf, "%s(%s,%u,%d)\n", __FUNCTION__, channel, elapsed);
+	OutputDebugStringA(szbuf);
+	CString strSubChannelName = CAgoraObject::GetAgoraObject()->GetSubChannelName();
+	CStringA strSubChannelName1 = CStringA(strSubChannelName.GetBuffer());
+	if (!strcmp(channel, strSubChannelName1.GetBuffer())) {
+
+		OutputDebugStringA("MainChanel JoinSuccess.\n");
+		return;
+	}
+
+
 	LPAGE_JOINCHANNEL_SUCCESS lpData = new AGE_JOINCHANNEL_SUCCESS;
 
 	int nChannelLen = strlen(channel) + 1;
@@ -109,8 +119,10 @@ void CAGEngineEventHandler::onAudioVolumeIndication(const AudioVolumeInfo* speak
 
 void CAGEngineEventHandler::onLeaveChannel(const RtcStats& stat)
 {
-	OutputDebugStringA(__FUNCTION__);
-	OutputDebugStringA("\n");
+	char szbuf[MAX_PATH] = { '\0' };
+	sprintf_s(szbuf, "%s()\n", __FUNCTION__);
+	OutputDebugStringA(szbuf);
+
 	LPAGE_LEAVE_CHANNEL lpData = new AGE_LEAVE_CHANNEL;
 
 	memcpy(&lpData->rtcStat, &stat, sizeof(RtcStats));
@@ -226,6 +238,10 @@ void CAGEngineEventHandler::onFirstRemoteVideoFrame(uid_t uid, int width, int he
 
 void CAGEngineEventHandler::onUserJoined(uid_t uid, int elapsed)
 {
+	char szbuf[MAX_PATH] = { "\0" };
+	sprintf_s(szbuf, "%s(%u,%d)\n", __FUNCTION__, uid, elapsed);
+	OutputDebugStringA(szbuf);
+
 	LPAGE_USER_JOINED lpData = new AGE_USER_JOINED;
 
 	lpData->uid = uid;
@@ -238,6 +254,10 @@ void CAGEngineEventHandler::onUserJoined(uid_t uid, int elapsed)
 
 void CAGEngineEventHandler::onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason)
 {
+	char szbuf[MAX_PATH] = { '\0' };
+	sprintf_s(szbuf, "%s(%u,%d)\n", __FUNCTION__, uid, reason);
+	OutputDebugStringA(szbuf);
+
 	LPAGE_USER_OFFLINE lpData = new AGE_USER_OFFLINE;
 
 	lpData->uid = uid;

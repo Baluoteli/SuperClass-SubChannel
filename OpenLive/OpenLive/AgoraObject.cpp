@@ -286,7 +286,7 @@ BOOL CAgoraObject::JoinSubChannel(LPCTSTR lpChannelName,UINT nUID /*= 0*/, LPCST
 #endif
 
 	if (nRet == 0)
-		m_strChannelName = lpChannelName;
+		m_strSubChannelName = lpChannelName;
 
 	return nRet == 0 ? TRUE : FALSE;
 }
@@ -304,6 +304,11 @@ BOOL CAgoraObject::LeaveCahnnel()
 CString CAgoraObject::GetChanelName()
 {
 	return m_strChannelName;
+}
+
+CString CAgoraObject::GetSubChannelName()
+{
+	return m_strSubChannelName;
 }
 
 CString CAgoraObject::GetCallID()

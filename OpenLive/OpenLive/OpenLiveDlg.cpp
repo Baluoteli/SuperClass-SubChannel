@@ -351,7 +351,6 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 	lpRtcEngine->startPreview();
 
 	lpAgoraObject->JoinChannel(strChannelName);
-	//lpAgoraObject->JoinSubChannel(strChannelName);
 
     lpAgoraObject->SetMsgHandlerWnd(m_dlgVideo.GetSafeHwnd());
     

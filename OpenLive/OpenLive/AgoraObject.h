@@ -63,6 +63,7 @@ public:
 	BOOL JoinSubChannel(LPCTSTR lpChannelName, UINT nUID = 0, LPCSTR lpDynamicKey = NULL);
 	BOOL LeaveCahnnel();
 	CString GetChanelName();
+	CString GetSubChannelName();
 	CString GetCallID();
 	CString GetAppID() { return m_strAppID; };
 
@@ -166,6 +167,7 @@ private:
 	
 	UINT		m_nSelfUID;
 	CString		m_strChannelName;
+	CString     m_strSubChannelName;
 	BOOL		m_bVideoEnable;
 	BOOL		m_bAudioEnable;
 
