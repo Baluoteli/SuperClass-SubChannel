@@ -26,12 +26,12 @@ CEnterChannelDlg::~CEnterChannelDlg()
 
 void CEnterChannelDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialogEx::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_EDCHNAME_CHANNEL, m_ctrChannel);
-    DDX_Control(pDX, IDC_BTNTEST_CHANNEL, m_btnTest);
-    DDX_Control(pDX, IDC_BTNJOIN_CHANNEL, m_btnJoin);
-    DDX_Control(pDX, IDC_BTNSET_CHANNEL, m_btnSetup);
-    DDX_Control(pDX, IDC_EDCHPSWD_CHANNEL, m_ctrPassword);
+	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDCHNAME_CHANNEL, m_ctrChannel);
+	DDX_Control(pDX, IDC_BTNTEST_CHANNEL, m_btnTest);
+	DDX_Control(pDX, IDC_BTNJOIN_CHANNEL, m_btnJoin);
+	DDX_Control(pDX, IDC_BTNSET_CHANNEL, m_btnSetup);
+	DDX_Control(pDX, IDC_EDCHPSWD_CHANNEL, m_ctrPassword);
 	DDX_Control(pDX, IDC_BUTTON_JOINSUB, m_btnJoinSub);
 }
 
@@ -137,6 +137,7 @@ void CEnterChannelDlg::InitCtrls()
 	m_btnSetup.SetFont(&m_ftBtn);
 	m_btnSetup.SetTextColor(RGB(0x55, 0x58, 0x5A), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
 	m_btnSetup.SetWindowText(_T("1920*1080,15fps, 3mbps"));
+
 
 	CMFCButton::EnableWindowsTheming(FALSE);
 }

@@ -56,4 +56,5 @@ private:
 	CDeviceDlg		m_dlgDevice;
 
 	CAGComboBox		m_ctrRole;
+public:
 };

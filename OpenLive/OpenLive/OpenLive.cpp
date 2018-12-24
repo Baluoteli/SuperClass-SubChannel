@@ -7,7 +7,7 @@
 #include "LogoDlg.h"
 #include "OpenLiveDlg.h"
 #include "EnterChannelDlg.h"
-
+#include "DialogConfig.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -72,6 +72,12 @@ BOOL COpenLiveApp::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("AgoraLiveVideo"));
 
+	CDialogConfig dlgConfig;
+	
+	if (dlgConfig.DoModal() == IDOK){
+
+	}
+	forceAlternativeNetworkEngine = dlgConfig.forceAlternativeNetworkEngine;
 	INT_PTR nResponse = 0;
 	CLogoDlg Logo;
 

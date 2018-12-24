@@ -195,7 +195,7 @@ private:
 
 	CAtlMap<UINT, SEI_INFO>	m_mapSEIInfo;
 public:
-	static CAgoraObject *GetAgoraObject(LPCTSTR lpVendorKey = NULL);
+	static CAgoraObject *GetAgoraObject(LPCTSTR lpVendorKey = NULL, BOOL bForceAlternativeNetworkEngine = FALSE);
 	static void CloseAgoraObject();
 
 	static CAGEngineEventHandler m_EngineEventHandler;

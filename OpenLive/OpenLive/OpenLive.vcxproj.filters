@@ -82,6 +82,7 @@
     <ClCompile Include="OpenLiveDlg.cpp">
       <Filter>UI\Dialog</Filter>
     </ClCompile>
+    <ClCompile Include="DialogConfig.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AGConfig.h">
@@ -177,6 +178,7 @@
     <ClInclude Include="OpenLiveDlg.h">
       <Filter>UI\Dialog</Filter>
     </ClInclude>
+    <ClInclude Include="DialogConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\IDB_BACKGROUND_VIDEO.bmp">

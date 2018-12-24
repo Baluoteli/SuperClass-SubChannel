@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "AgoraObject.h"
 #include "AGResourceVisitor.h"
-
+#include <IAgoraRtcEngine2.h>
 #include <stdio.h>
 
 
@@ -89,7 +89,7 @@ IRtcEngine *CAgoraObject::GetEngine()
 	return m_lpAgoraEngine;
 }
 
-CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpVendorKey)
+CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpVendorKey, BOOL bForceAlternativeNetworkEngine)
 {
 	if(m_lpAgoraObject == NULL)
 		m_lpAgoraObject = new CAgoraObject();
@@ -101,21 +101,28 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpVendorKey)
 	if (lpVendorKey == NULL)
 		return m_lpAgoraObject;
 
-	RtcEngineContext ctx;
+	//RtcEngineContext ctx;
 
-	ctx.eventHandler = &m_EngineEventHandler;
-	ctx.isMaster = true;
+	//ctx.eventHandler = &m_EngineEventHandler;
+	//ctx.isMaster = true;
+
+	RtcEngineContextEx ctxEx;
+	ctxEx.eventHandler = &m_EngineEventHandler;
+	ctxEx.isMaster = true;
 
 #ifdef UNICODE
 	char szVendorKey[128];
 
 	::WideCharToMultiByte(CP_ACP, 0, lpVendorKey, -1, szVendorKey, 128, NULL, NULL);
-	ctx.appId = szVendorKey;
+	ctxEx.appId = szVendorKey;
 #else
-	ctx.appId = lpVendorKey;
+	ctxEx.appId = lpVendorKey;
 #endif
+	ctxEx.forceAlternativeNetworkEngine = bForceAlternativeNetworkEngine;
+	IRtcEngine2* rtcEngine2 = (IRtcEngine2*)m_lpAgoraEngine;
+	
+	rtcEngine2->initializeEx(ctxEx);
 
-	m_lpAgoraEngine->initialize(ctx);
 	if (lpVendorKey != NULL)
 		m_strAppID = lpVendorKey;
 

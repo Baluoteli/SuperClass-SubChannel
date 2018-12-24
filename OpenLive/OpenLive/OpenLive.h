@@ -27,6 +27,8 @@ public:
 // Implementation
 
 	DECLARE_MESSAGE_MAP()
+public:
+	BOOL forceAlternativeNetworkEngine = TRUE;
 };
 
 extern COpenLiveApp theApp;
